@@ -1,11 +1,11 @@
 # PetShop
 
-[![.NET](https://github.com/scluispaulo/PetShop/actions/workflows/dotnet.yml/badge.svg)](https://github.com/scluispaulo/PetShop/actions/workflows/dotnet.yml)
+[![.NET CI](https://github.com/scluispaulo/PetShop/actions/workflows/dotnet.yml/badge.svg)](https://github.com/scluispaulo/PetShop/actions/workflows/dotnet.yml)
 
-This is a basic project for help a pet shop to management pet's accommodations. It's was think in a multi-layered approach to divide responsibilities between layers.
+This is a basic project for help a pet shop to management pet's accommodations. It was think in a multi-layered approach to divide responsibilities between layers.
 
 ## Tools used
-- .Net Core 5.0
+- .Net 5.0
 - Sqlite
 - Entity Framework Core
 - Fluent Validation
