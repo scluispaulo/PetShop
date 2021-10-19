@@ -27,6 +27,12 @@ namespace Application
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+               options.AddPolicy("MyPolicy",
+               builder =>
+                   {
+                       builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                   }));
 
              services.AddControllers()
                 .AddJsonOptions(j => j.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve)
@@ -54,8 +60,8 @@ namespace Application
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Application v1"));
             }
-
-            app.UseHttpsRedirection();
+            
+            app.UseCors("MyPolicy");
 
             app.UseRouting();
 
