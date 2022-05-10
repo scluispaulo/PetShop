@@ -5,7 +5,7 @@
 This is a basic project for help a pet shop to management pet's accommodations. It was think in a multi-layered approach to divide responsibilities between layers.
 
 ## Tools used
-- .Net 5.0
+- .Net 6
 - Sqlite
 - Entity Framework Core
 - Fluent Validation
