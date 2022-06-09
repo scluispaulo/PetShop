@@ -10,9 +10,9 @@ namespace Service
 {
     public class PetService : IPetService
     {
-        private readonly SqLiteContext _context;
+        private readonly PetShopContext _context;
 
-        public PetService(SqLiteContext context)
+        public PetService(PetShopContext context)
         {
             _context = context;
         }

@@ -10,9 +10,9 @@ namespace Service
 {
     public class AccommodationService : IAccommodationService
     {
-        private readonly SqLiteContext _context;
+        private readonly PetShopContext _context;
 
-        public AccommodationService(SqLiteContext context)
+        public AccommodationService(PetShopContext context)
         {
             _context = context;
         }

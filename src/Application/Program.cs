@@ -6,6 +6,7 @@ using FluentValidation;
 using Application.DTOs;
 using Application.Mapper;
 using FluentValidation.AspNetCore;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +22,9 @@ builder.Services.AddControllers()
 builder.Services.AddEndpointsApiExplorer();
 
 var connectionString = builder.Configuration.GetConnectionString("PetDatabase");
-builder.Services.AddSqlite<SqLiteContext>(connectionString);
+builder.Services.AddDbContext<PetShopContext>(
+    options => options.UseMySql(connectionString, new MySqlServerVersion(new System.Version(8,0)))
+);
 
 builder.Services.AddSwaggerGen();
 
