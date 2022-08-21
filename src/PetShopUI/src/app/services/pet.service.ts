@@ -21,4 +21,19 @@ export class PetService {
   addPet(pet: Pet): Observable<Pet> {
     return this.http.post<Pet>(this.apiUrl, pet, httpOption);
   }
+
+  searchPet(petName: string): Observable<Pet[]> {
+    const url = `${this.apiUrl}/getPetByName?name=${petName}`;
+    return this.http.get<Pet[]>(url);
+  }
+
+  deletePet(petId: number): Observable<any> {
+    const url = `${this.apiUrl}/${petId}`;
+    return this.http.delete<Pet>(url);
+  }
+
+  updatePet(pet: Pet): Observable<any> {
+    const url = `${this.apiUrl}/${pet.id}`;
+    return this.http.put<Pet>(url, pet, httpOption);
+  }
 }

@@ -1,1 +1,54 @@
-<p>edit-pet works!</p>
+<form (ngSubmit)="onEditPet()" *ngIf="selectedPet">
+
+    <div class="form-group">
+      <label for="accommodation">Free Accommodations</label>
+      <select name="accommodation" id="accommodation" class="form-control" (change)="AccommodationSelected($event)">
+        <option [value]="selectedPet.accommodationNumber">{{selectedPet.accommodationNumber}}</option>
+        <option *ngFor="let accommodation of freeAccommodations"
+                [value]="accommodation.number">
+          {{accommodation.number}}
+        </option>
+      </select>
+    </div>
+  
+    <h5>Pet Information</h5>
+  
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" name="name" [(ngModel)]="selectedPet.name" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+      <label for="reasonForTreatment">Reason For Treatment</label>
+      <input type="text" name="reasonForTreatment" [(ngModel)]="selectedPet.reasonForTreatment" class="form-control" />
+    </div>
+  
+    <div class="form-group">
+      <label for="heathState">Current Health State</label>
+      <select name="healthState" id="healthState" class="form-control" (change)="HealthStateSelected($event)">
+        <option [value]="selectedPet.heathState">{{HealthState[selectedPet.heathState]}}</option>
+        <option *ngFor="let key of keys" [value]="key">{{HealthState[key]}}</option>
+      </select>
+    </div>
+<!--   
+    <h5>Owner Information</h5>
+  
+    <div class="form-group">
+      <label for="ownerName">Name</label>
+      <input type="text" [(ngModel)]="selectedPet.ownerDTO.name" name="ownerName" class="form-control" />
+    </div>
+  
+    <div class="form-group">
+      <label for="ownerPhone">Phone</label>
+      <input type="text" [(ngModel)]="selectedPet.ownerDTO.phone" name="ownerPhone" class="form-control" />
+    </div>
+  
+    <div class="form-group">
+      <label for="ownerAddress">Address</label>
+      <input type="text" [(ngModel)]="selectedPet.ownerDTO?.address" name="ownerAddress" class="form-control" />
+    </div> -->
+  
+    <button type="submit" class="btn btn-success">Submit</button>
+    <button type="submit" class="btn btn-warning">Cancel</button>
+</form>
+  

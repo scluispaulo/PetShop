@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row" *ngIf="findPet.length">
+      <table class="table table-sm">
+        <thead>
+          <tr>
+            <th class="text-center">Pet name</th>
+            <th class="text-center">Owner name</th>
+            <th class="text-center">Actions</th>
+          </tr>
+        </thead>
+  
+        <tbody>
+          <tr *ngFor="let pet of findPet">
+            <td class="text-center">{{pet.name}}</td>
+            <td class="text-center">{{pet.ownerDTO?.name}}</td>
+            <td class="text-center">
+              <button class="btn btn-primary" (click)="editPet(pet.id)">Editar</button>
+              <button class="btn btn-danger" (click)="deletePet(pet.id)">Excluir</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <h5 *ngIf="!findPet.length && showResult">Pet not found</h5>
+    
+  </div>

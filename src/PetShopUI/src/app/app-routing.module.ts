@@ -4,12 +4,16 @@ import { AccommodationsComponent } from './components/accommodations/accommodati
 import { EditPetComponent } from './components/edit-pet/edit-pet.component';
 import { IndexComponent } from './components/index/index.component';
 import { NewPetComponent } from './components/new-pet/new-pet.component';
+import { SearchPetComponent } from './components/search-pet/search-pet.component';
+import { ListPetComponent } from './components/list-pet/list-pet.component';
 
 const routes: Routes = [
   { path: '', component: IndexComponent },
-  { path: 'newpet', component: NewPetComponent },
-  { path: 'editpet', component: EditPetComponent },
-  { path: 'accommodations', component: AccommodationsComponent }
+  { path: 'newPet', component: NewPetComponent },
+  { path: 'editPet', component: EditPetComponent },
+  { path: 'accommodations', component: AccommodationsComponent },
+  { path: 'searchPet', component: SearchPetComponent },
+  { path: 'listPet', component: ListPetComponent }
 ];
 
 @NgModule({

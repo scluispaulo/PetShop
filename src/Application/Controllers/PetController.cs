@@ -43,7 +43,7 @@ namespace Application.Controllers
                 return NotFound("Name can't be empity");
             }
 
-            Pet[] pets = await _service.GetPetsByName(name, false);
+            Pet[] pets = await _service.GetPetsByName(name, true);
 
             if (pets is null)
             {

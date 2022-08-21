@@ -1,12 +1,12 @@
 import { Owner } from "./Owner";
 
 export interface Pet {
-  Id?: number;
-  Name: string;
-  ReasonForTreatment: string;
-  HeathState: number;
-  Image: string;
-  OwnerId?: number;
-  OwnerDTO?: Owner;
-  AccommodationNumber: number;
+  id: number;
+  name: string;
+  reasonForTreatment: string;
+  heathState: number;
+  image: string;
+  ownerId?: number;
+  ownerDTO?: Owner;
+  accommodationNumber: number;
 }

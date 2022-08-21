@@ -12,6 +12,8 @@ import { EditPetComponent } from './components/edit-pet/edit-pet.component';
 import { NewPetComponent } from './components/new-pet/new-pet.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AccommodationsComponent } from './components/accommodations/accommodations.component';
+import { SearchPetComponent } from './components/search-pet/search-pet.component';
+import { ListPetComponent } from './components/list-pet/list-pet.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { AccommodationsComponent } from './components/accommodations/accommodati
     HeaderComponent,
     EditPetComponent,
     NewPetComponent,
-    AccommodationsComponent
+    AccommodationsComponent,
+    SearchPetComponent,
+    ListPetComponent
   ],
   imports: [
     BrowserModule,

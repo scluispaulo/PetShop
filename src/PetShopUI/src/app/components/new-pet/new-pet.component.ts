@@ -71,18 +71,19 @@ export class NewPetComponent implements OnInit {
 
   createPetAndOwner(): object{
     let newOwner = {
-      Name: this.ownerName,
-      Phone: this.ownerPhone,
-      Address: this.ownerAddress
+      name: this.ownerName,
+      phone: this.ownerPhone,
+      address: this.ownerAddress
     }
     
     let newPet: Pet = {
-      Name: this.petName,
-      ReasonForTreatment: this.reasonForTreatment,
-      HeathState: this.healthStateSelected,
-      Image: " ",
-      OwnerDTO: newOwner,
-      AccommodationNumber: this.accommodationSelected
+      id: 0,
+      name: this.petName,
+      reasonForTreatment: this.reasonForTreatment,
+      heathState: this.healthStateSelected,
+      image: " ",
+      ownerDTO: newOwner,
+      accommodationNumber: this.accommodationSelected
     };
 
     return newPet;
@@ -90,12 +91,13 @@ export class NewPetComponent implements OnInit {
 
   createPet(): object{
     let newPet: Pet = {
-      Name: this.petName,
-      ReasonForTreatment: this.reasonForTreatment,
-      HeathState: this.healthStateSelected,
-      Image: " ",
-      OwnerId: this.ownerId,
-      AccommodationNumber: this.accommodationSelected
+      id: 0,
+      name: this.petName,
+      reasonForTreatment: this.reasonForTreatment,
+      heathState: this.healthStateSelected,
+      image: " ",
+      ownerId: this.ownerId,
+      accommodationNumber: this.accommodationSelected
     };
 
     return newPet;
