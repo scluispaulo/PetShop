@@ -1,18 +1,18 @@
-<div class="container">
-  <form class="form-inline" (ngSubmit)="searchPet()" *ngIf="!selectedPet">
-    <input type="search" class="form-control" placeholder="Pet name" [(ngModel)]="petName" name="search"/>
-    <button type="submit" class="btn btn-outline-success my-2">Search</button>
+<div>
+  <form  [formGroup]="searchForm" (ngSubmit)="searchPet()" *ngIf="!isPetSelected">
+    <div class="form-row align-items-center">
+      <div class="col">
+        <input type="search" class="form-control" placeholder="Pet name" formControlName="petName" name="search"/>
+      </div>
+      <div class="col">
+        <input type="submit" class="btn btn-primary" value="Search" [disabled]="!searchForm.valid">
+      </div>
+    </div>
   </form>
 
-  <app-list-pet 
-    *ngIf="!selectedPet"
-    [findPet]="findPet" 
-    [showResult]="showResult"
-    (selectedPet)="onSelectedPet($event)">
-  </app-list-pet>
-  
-  <app-edit-pet 
-    *ngIf="selectedPet"
-    [selectedPet]="selectedPet">
-  </app-edit-pet>
+  <div class="mt-4">
+    <app-list-pet *ngIf="!isPetSelected" [petList]="petList" [showResult]="showResult"></app-list-pet>
+
+    <app-edit-pet *ngIf="isPetSelected"></app-edit-pet>
+  </div>
 </div>

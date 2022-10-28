@@ -1,53 +1,50 @@
-<form (ngSubmit)="onSubmit()">
+<form [formGroup]="petForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="accommodation">Free Accommodations</label>
+    <select name="accommodation" id="accommodation" class="form-control" formControlName="accommodationSelected">
+      <option [ngValue]="null">Select</option>
+      <option *ngFor="let accommodation of freeAccommodations" [ngValue]="accommodation.number">
+        {{accommodation.number}}
+      </option>
+    </select>
+  </div>
 
-    <div class="form-group">
-      <label for="accommodation">Free Accommodations</label>
-      <select name="accommodation" id="accommodation" class="form-control" (change)="AccommodationSelected($event)">
-        <option [value]="null">Select</option>
-        <option *ngFor="let accommodation of freeAccommodations"
-                [value]="accommodation.number">
-          {{accommodation.number}}
-        </option>
-      </select>
-    </div>
-  
-    <h5>Pet Information</h5>
-  
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input type="text" name="name" [(ngModel)]="petName" class="form-control" required />
-    </div>
+  <h5>Pet Information</h5>
 
-    <div class="form-group">
-      <label for="reasonForTreatment">Reason For Treatment</label>
-      <input type="text" name="reasonForTreatment" [(ngModel)]="reasonForTreatment" class="form-control" />
-    </div>
-  
-    <div class="form-group">
-      <label for="heathState">Current Health State</label>
-      <select name="healthState" id="healthState" class="form-control" (change)="HealthStateSelected($event)">
-        <option [value]="null">Select</option>
-        <option *ngFor="let key of keys" [value]="key">{{HealthState[key]}}</option>
-      </select>
-    </div>
-  
-    <h5>Owner Information</h5>
-  
-    <div class="form-group">
-      <label for="ownerName">Name</label>
-      <input type="text" [(ngModel)]="ownerName" name="ownerName" class="form-control" />
-    </div>
-  
-    <div class="form-group">
-      <label for="ownerPhone">Phone</label>
-      <input type="text" [(ngModel)]="ownerPhone" name="ownerPhone" class="form-control" />
-    </div>
-  
-    <div class="form-group">
-      <label for="ownerAddress">Address</label>
-      <input type="text" [(ngModel)]="ownerAddress" name="ownerAddress" class="form-control" />
-    </div>
-  
-    <button type="submit" class="btn btn-success">Submit</button>
+  <div class="form-group">
+    <label for="petName">Name</label>
+    <input type="text" name="petName" formControlName="petName" class="form-control" />
+  </div>
+
+  <div class="form-group">
+    <label for="reasonForTreatment">Reason For Treatment</label>
+    <input type="text" name="reasonForTreatment" formControlName="reasonForTreatment" class="form-control" />
+  </div>
+
+  <div class="form-group">
+    <label for="heathState">Current Health State</label>
+    <select name="healthState" id="healthState" formControlName="healthStateSelected" class="form-control">
+      <option [ngValue]="null">Select</option>
+      <option *ngFor="let key of keys" [ngValue]="key">{{healthState[key]}}</option>
+    </select>
+  </div>
+
+  <h5>Owner Information</h5>
+
+  <div class="form-group">
+    <label for="ownerName">Name</label>
+    <input type="text" name="ownerName" class="form-control" formControlName="ownerName" />
+  </div>
+
+  <div class="form-group">
+    <label for="ownerPhone">Phone</label>
+    <input type="text" name="ownerPhone" class="form-control" formControlName="ownerPhone" />
+  </div>
+
+  <div class="form-group">
+    <label for="ownerAddress">Address</label>
+    <input type="text" name="ownerAddress" class="form-control" formControlName="ownerAddress" />
+  </div>
+
+  <input type="submit" [disabled]="!petForm.valid" value="Submit" class="btn btn-primary btn-block">
 </form>
-  

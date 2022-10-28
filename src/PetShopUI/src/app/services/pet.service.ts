@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Pet } from '../interfaces/Pet';
 
@@ -15,6 +15,13 @@ const httpOption = {
 })
 export class PetService {
   private apiUrl: string = 'http://localhost:5000/pet';
+  selectedPet = new BehaviorSubject<Pet>({
+    id: 0,
+    name: '',
+    reasonForTreatment: '',
+    heathState: 0,
+    accommodationNumber: 0
+  });
 
   constructor(private http: HttpClient) { }
 

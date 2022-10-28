@@ -13,7 +13,8 @@ const routes: Routes = [
   { path: 'editPet', component: EditPetComponent },
   { path: 'accommodations', component: AccommodationsComponent },
   { path: 'searchPet', component: SearchPetComponent },
-  { path: 'listPet', component: ListPetComponent }
+  { path: 'listPet', component: ListPetComponent },
+  { path: '**', component: IndexComponent },
 ];
 
 @NgModule({

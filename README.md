@@ -2,7 +2,12 @@
 
 [![.NET CI](https://github.com/scluispaulo/PetShop/actions/workflows/dotnet.yml/badge.svg)](https://github.com/scluispaulo/PetShop/actions/workflows/dotnet.yml)
 
-![petshop](https://user-images.githubusercontent.com/63242321/186998179-e064aedf-64ba-4b73-9b98-d96476a10763.gif)
+<img src="https://user-images.githubusercontent.com/63242321/198752130-16ebdc63-14f7-466b-ab0d-353e8dd97387.png" width="600">
+
+<img src="https://user-images.githubusercontent.com/63242321/198752181-e8bc96e2-2857-4f5e-a0fc-06bdd93c8128.png" width="600">
+
+<img src="https://user-images.githubusercontent.com/63242321/198752198-2f431e4b-e00e-4f47-ac16-ed71949a6ab9.png" width="600">
+
 
 ## Installation/ Configuration:
 

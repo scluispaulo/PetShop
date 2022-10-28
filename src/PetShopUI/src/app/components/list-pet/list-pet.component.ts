@@ -10,9 +10,8 @@ import { PetService } from '../../services/pet.service';
   styleUrls: ['./list-pet.component.css']
 })
 export class ListPetComponent implements OnInit {
-  @Input() findPet: Pet[] = [];
+  @Input() petList: Pet[] = [];
   @Input() showResult: boolean = false;
-  @Output() selectedPet: EventEmitter<Pet> = new EventEmitter();
 
   constructor(private petService: PetService,
     private router: Router){}
@@ -30,10 +29,10 @@ export class ListPetComponent implements OnInit {
   }
 
   filterFindPet(petId: number): void {
-    this.findPet = this.findPet.filter((pet) => pet.id !== petId);
+    this.petList = this.petList.filter((pet) => pet.id !== petId);
   }
 
-  editPet(petId: number): void {
-    this.selectedPet.emit(this.findPet.find((pet) => pet.id === petId));
+  editPet(pet: Pet): void {
+    this.petService.selectedPet.next(pet);
   }
 }

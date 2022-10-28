@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { Owner } from 'src/app/interfaces/Owner';
 import { HealthStateEnum } from '../../enums/HealthStateEnum';
 import { Accommodation } from '../../interfaces/Accommodation';
 import { Pet } from '../../interfaces/Pet';
@@ -14,23 +15,36 @@ import { PetService } from '../../services/pet.service';
 })
 export class NewPetComponent implements OnInit {
   freeAccommodations: Accommodation[] = [];
-  HealthState = HealthStateEnum;
+  healthState = HealthStateEnum;
   keys: any[];
 
-  accommodationSelected!: number;
-  healthStateSelected!: number;
-  petName!: string;
-  reasonForTreatment!: string;
-  ownerId: number = 0;
-  ownerName!: string;
-  ownerPhone!: string;
-  ownerAddress!: string;
-  
+  petForm = this.fb.group({
+    accommodationSelected: [null, Validators.required],
+    healthStateSelected: [null, Validators.required],
+    petName: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100)])],
+    reasonForTreatment: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100)])],
+    ownerName: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100)])],
+    ownerPhone: ['', Validators.compose([Validators.required, Validators.pattern('[0-9 ]{9}')])],
+    ownerAddress: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100)])]
+  });
+
   constructor(
     private router: Router,
     private accommodationService: AccommodationService,
-    private petService: PetService) { 
-    this.keys = Object.keys(this.HealthState).filter(Number);
+    private petService: PetService,
+    private fb: FormBuilder)
+  {
+    this.keys = Object.keys(this.healthState).filter(Number);
+  }
+
+  ngOnInit(): void {
+    this.accommodationService.getFreeAccommodation()
+      .subscribe((data: Accommodation[]) => this.freeAccommodations = data);
+  }
+
+  onSubmit() {
+    let newPet: Pet =  this.createPetAndOwner();
+    this.addPet(newPet);
   }
 
   addPet(pet: Pet) {
@@ -44,60 +58,20 @@ export class NewPetComponent implements OnInit {
       })
   }
 
-  ngOnInit(): void {
-    this.accommodationService.getFreeAccommodation()
-      .subscribe((data: Accommodation[]) => this.freeAccommodations = data);
-  }
-
-  AccommodationSelected(event: any): void {
-    this.accommodationSelected = event.target.value;
-  }
-  
-  HealthStateSelected(event: any): void {
-    this.healthStateSelected = event.target.value;
-  }
-
-  onSubmit() {
-    let newPet!: any;
-
-    if (this.ownerId == 0) {
-      newPet = this.createPetAndOwner()
-    } else {
-      newPet = this.createPet()
-    }
-
-    this.addPet(newPet);
-  }
-
-  createPetAndOwner(): object{
-    let newOwner = {
-      name: this.ownerName,
-      phone: this.ownerPhone,
-      address: this.ownerAddress
-    }
-    
-    let newPet: Pet = {
-      id: 0,
-      name: this.petName,
-      reasonForTreatment: this.reasonForTreatment,
-      heathState: this.healthStateSelected,
-      image: " ",
-      ownerDTO: newOwner,
-      accommodationNumber: this.accommodationSelected
+  createPetAndOwner(): Pet{
+    let newOwner: Owner = {
+      name: this.petForm.value.ownerName,
+      phone: this.petForm.value.ownerPhone,
+      address: this.petForm.value.ownerAddress
     };
 
-    return newPet;
-  }
-
-  createPet(): object{
     let newPet: Pet = {
       id: 0,
-      name: this.petName,
-      reasonForTreatment: this.reasonForTreatment,
-      heathState: this.healthStateSelected,
-      image: " ",
-      ownerId: this.ownerId,
-      accommodationNumber: this.accommodationSelected
+      name: this.petForm.value.petName,
+      reasonForTreatment: this.petForm.value.reasonForTreatment,
+      heathState: this.petForm.value.healthStateSelected,
+      ownerDTO: newOwner,
+      accommodationNumber: this.petForm.value.accommodationSelected
     };
 
     return newPet;
