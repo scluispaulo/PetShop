@@ -15,7 +15,7 @@ namespace Application.Mapper
             CreateMap<PetDTO, Pet>()
                 .ForMember(dest => dest.Owner, opt => opt.MapFrom(src => src.OwnerDTO))
                 .ForMember(dest => dest.AccommodationId, opt => opt.MapFrom(src => src.AccommodationNumber))
-                .ForMember(dest => dest.HeathState, opt => opt.MapFrom(src => src.HeathState))
+                .ForMember(dest => dest.HealthState, opt => opt.MapFrom(src => src.HealthState))
                 .ReverseMap();
         }
     }

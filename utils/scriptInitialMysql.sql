@@ -25,7 +25,7 @@ create table Pet (
     OwnerId int,
     Name varchar(100) not null,
 	ReasonForTreatment varchar(100),
-    HeathState tinyint,
+    HealthState tinyint,
     
     primary key(Id),
     foreign key(AccommodationId) references Accommodation(Id),
@@ -40,7 +40,7 @@ insert into Accommodation (Number)
 insert Owner (Name, Phone, Address)
 	values('Luis Paulo', '85999999999', 'Fortaleza-CE');
 
-insert into Pet (AccommodationId, OwnerId, Name, ReasonForTreatment, HeathState) 
+insert into Pet (AccommodationId, OwnerId, Name, ReasonForTreatment, HealthState) 
 	values (1, 1, 'Jade', 'Pulgas', 1);
 
 update Accommodation
