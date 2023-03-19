@@ -14,7 +14,7 @@ const httpOption = {
   providedIn: 'root'
 })
 export class PetService {
-  private apiUrl: string = 'http://localhost:5000/pet';
+  private apiUrl: string = 'http://localhost:5000/Pet';
   selectedPet = new BehaviorSubject<Pet>({
     id: 0,
     name: '',
@@ -30,7 +30,7 @@ export class PetService {
   }
 
   searchPet(petName: string): Observable<Pet[]> {
-    const url = `${this.apiUrl}/getPetByName?name=${petName}`;
+    const url = `${this.apiUrl}/?Name=${petName}`;
     return this.http.get<Pet[]>(url);
   }
 

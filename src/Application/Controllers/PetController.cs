@@ -1,8 +1,9 @@
-using System.Threading.Tasks;
+using System.Text.Json;
 using Application.DTOs;
 using AutoMapper;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Service.Helpers;
 using Service.Interfaces;
 
 namespace Application.Controllers
@@ -22,6 +23,65 @@ namespace Application.Controllers
             _accommodationService = accommodationService;
         }
 
+        [HttpGet(Name = "GetPets")]
+        [HttpHead]
+        public async Task<ActionResult<PetDTO[]>> GetPets([FromQuery] PetParameters petParameters)
+        {
+            var paginatedPet = await _service.GetPetsAsync(petParameters);
+
+            if (paginatedPet is null)
+            {
+                return NotFound();
+            }
+
+            var previousPageLink = paginatedPet.HasPreviousPage 
+                ? CreateAuthorsResourceUri(petParameters, ResourceUriTypeEnum.PreviousPage) 
+                : null;
+
+            var nextPageLink = paginatedPet.HasNextPage
+                ? CreateAuthorsResourceUri(petParameters, ResourceUriTypeEnum.NextPage)
+                : null;
+
+            var paginationMetadata = new {
+                totalCount = paginatedPet.TotalPages,
+                pageNumber = paginatedPet.PageNumber,
+                previousPageLink = previousPageLink,
+                nextPageLink = nextPageLink
+            };
+
+            Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(paginationMetadata));
+
+            return Ok(_mapper.Map<PetDTO[]>(paginatedPet));
+        }
+
+        private string CreateAuthorsResourceUri(PetParameters petParameters, ResourceUriTypeEnum type)
+        {
+            return type switch
+            {
+                ResourceUriTypeEnum.PreviousPage => 
+                    Url.Link("GetPets", new {
+                        name = petParameters.Name,
+                        healthState = petParameters.HealthState,
+                        pageNumber = petParameters.PageNumber - 1,
+                        pageSize = petParameters.PageSize,
+                    }),
+                ResourceUriTypeEnum.NextPage => 
+                    Url.Link("GetPets", new {
+                        name = petParameters.Name,
+                        healthState = petParameters.HealthState,
+                        pageNumber = petParameters.PageNumber + 1,
+                        pageSize = petParameters.PageSize,
+                    }),
+                _ => 
+                    Url.Link("GetPets", new {
+                        name = petParameters.Name,
+                        healthState = petParameters.HealthState,
+                        pageNumber = petParameters.PageNumber,
+                        pageSize = petParameters.PageSize,
+                    })
+            };
+        }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<PetDTO>> GetPetById(int id)
         {
@@ -33,24 +93,6 @@ namespace Application.Controllers
             }
 
             return Ok(_mapper.Map<PetDTO>(pet));
-        }
-
-        [HttpGet("getPetByName")]
-        public async Task<ActionResult<PetDTO[]>> GetPetsByName(string name)
-        {
-            if (name is null)
-            {
-                return NotFound("Name can't be empity");
-            }
-
-            Pet[] pets = await _service.GetPetsByName(name, true);
-
-            if (pets is null)
-            {
-                return NotFound();
-            }
-
-            return Ok(_mapper.Map<PetDTO[]>(pets));
         }
 
         [HttpPost]

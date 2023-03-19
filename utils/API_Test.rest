@@ -1,0 +1,66 @@
+// Using REST Client Extension
+
+@httpHost = http://localhost:5000
+
+###
+HEAD {{httpHost}}/Pet
+
+###
+GET {{httpHost}}/Pet/1
+
+###
+GET {{httpHost}}/Pet?Name=Jade
+
+###
+GET {{httpHost}}/Pet?Name=Jade&PageNumber=1&PageSize=3
+
+###
+GET {{httpHost}}/Accommodation
+
+###
+GET {{httpHost}}/Accommodation/getFreeAccommodation
+
+###
+POST {{httpHost}}/Pet
+Content-Type: application/json
+
+{
+  "name": "Madona",
+  "reasonForTreatment": "Pulgas",
+  "healthState": 2,
+  "accommodationNumber": 2,
+  "ownerId": 1
+}
+
+###
+POST {{httpHost}}/Pet
+Content-Type: application/json
+
+{
+  "name": "Pipoca",
+  "reasonForTreatment": "Feridas na pata",
+  "healthState": 1,
+  "accommodationNumber": 3,
+  "ownerId": 0,
+  "ownerDTO": {
+    "name": "Kamila",
+    "phone": "98888-8888",
+    "address": "Fortaleza"
+  }
+}
+
+###
+PUT {{httpHost}}/Pet/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "Jade",
+  "reasonForTreatment": "Tosse",
+  "healthState": 1,
+  "accommodationNumber": 1,
+  "ownerId": 1
+}
+
+###
+DELETE {{httpHost}}/Pet/1

@@ -38,11 +38,15 @@ insert into Accommodation (Number)
 	values (1),(2),(3),(4),(5),(6),(7),(8),(9),(10);
 
 insert Owner (Name, Phone, Address)
-	values('Luis Paulo', '85999999999', 'Fortaleza-CE');
+	values
+        ('Luis Paulo', '85999999999', 'Fortaleza-CE'),
+        ('Camila', '85999999999', 'Fortaleza-CE');
 
 insert into Pet (AccommodationId, OwnerId, Name, ReasonForTreatment, HealthState) 
-	values (1, 1, 'Jade', 'Pulgas', 1);
+	values
+        (1, 1, 'Jade', 'Pulgas', 1),
+        (2, 2, 'Madona', 'Ferida na pata', 1);
 
 update Accommodation
 set State = 2
-where Id = 1;
+where Id in (1, 2);

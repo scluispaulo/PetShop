@@ -5,6 +5,7 @@ using Domain.Enums;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Service.Interfaces;
+using Service.Helpers;
 
 namespace Service
 {
@@ -79,6 +80,22 @@ namespace Service
 
             _context.Pets.Remove(pet);
             return (await _context.SaveChangesAsync()) > 0;
+        }
+
+        public async Task<PaginatedList<Pet>> GetPetsAsync(PetParameters petParameters)
+        {
+            if (petParameters is null)
+                throw new System.ArgumentNullException(nameof(petParameters));
+
+            IQueryable<Pet> query = _context.Pets.AsNoTracking();
+
+            if (!string.IsNullOrWhiteSpace(petParameters.Name))
+                query = query.Where(x => x.Name.ToLower().Contains(petParameters.Name.Trim().ToLower()));
+            
+            if (petParameters.HealthState != 0)
+                query = query.Where(x => x.HealthState == (HealthStateEnum)petParameters.HealthState);
+            
+            return await PaginatedList<Pet>.CreateAsync(query, petParameters.PageNumber, petParameters.PageSize);
         }
     }
 }

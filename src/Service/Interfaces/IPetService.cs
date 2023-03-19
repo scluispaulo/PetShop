@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using Domain.Entities;
+using Service.Helpers;
 
 namespace Service.Interfaces
 {
@@ -10,5 +11,6 @@ namespace Service.Interfaces
         Task<int> CreatePet(Pet pet);
         Task<bool> UpdatePet(Pet pet, int oldAccommodationNumber);
         Task<bool> DeletePet(Pet pet);
+        Task<PaginatedList<Pet>> GetPetsAsync(PetParameters petParameters);
     }
 }
