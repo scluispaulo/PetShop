@@ -49,20 +49,6 @@ namespace Service
             return await query.FirstOrDefaultAsync();
         }
 
-        public async Task<Pet[]> GetPetsByName(string name, bool inclueOwner)
-        {
-            IQueryable<Pet> query = _context.Pets.AsNoTracking()
-                .Where(x => x.Name.ToLower().Contains(name.ToLower()))
-                .OrderBy(x => x.Id);
-
-            if (inclueOwner)
-            {
-                query = query.Include(x => x.Owner);
-            }
-
-            return await query.ToArrayAsync();
-        }
-
         public async Task<bool> UpdatePet(Pet newPet, int oldAccommodationNumber = 0)
         {
             if (oldAccommodationNumber != 0)

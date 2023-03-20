@@ -1,27 +1,24 @@
 // Using REST Client Extension
 
-@httpHost = http://localhost:5000
+@httpHost = http://localhost:5000/api
 
 ###
-HEAD {{httpHost}}/Pet
+GET {{httpHost}}/Pets
 
 ###
-GET {{httpHost}}/Pet/1
+GET {{httpHost}}/Pets?Name=Jade
 
 ###
-GET {{httpHost}}/Pet?Name=Jade
+GET {{httpHost}}/Pets?Name=Jade&PageNumber=1&PageSize=3
 
 ###
-GET {{httpHost}}/Pet?Name=Jade&PageNumber=1&PageSize=3
+GET {{httpHost}}/Accommodations
 
 ###
-GET {{httpHost}}/Accommodation
+GET {{httpHost}}/Accommodations/getFreeAccommodation
 
 ###
-GET {{httpHost}}/Accommodation/getFreeAccommodation
-
-###
-POST {{httpHost}}/Pet
+POST {{httpHost}}/Pets
 Content-Type: application/json
 
 {
@@ -33,7 +30,7 @@ Content-Type: application/json
 }
 
 ###
-POST {{httpHost}}/Pet
+POST {{httpHost}}/Pets
 Content-Type: application/json
 
 {
@@ -50,7 +47,7 @@ Content-Type: application/json
 }
 
 ###
-PUT {{httpHost}}/Pet/1
+PUT {{httpHost}}/Pets/1
 Content-Type: application/json
 
 {
@@ -63,4 +60,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{httpHost}}/Pet/1
+DELETE {{httpHost}}/Pets/1

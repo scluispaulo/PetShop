@@ -14,7 +14,7 @@ const httpOption = {
   providedIn: 'root'
 })
 export class PetService {
-  private apiUrl: string = 'http://localhost:5000/Pet';
+  private apiUrl: string = 'http://localhost:5000/api/Pets';
   selectedPet = new BehaviorSubject<Pet>({
     id: 0,
     name: '',
