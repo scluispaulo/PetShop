@@ -1,9 +1,8 @@
-namespace Domain.Enums
+namespace Domain.Enums;
+
+public enum HealthStateEnum
 {
-    public enum HealthStateEnum
-    {
-        InTreatment = 1,
-        Recovery = 2,
-        Recovered = 3
-    }
+    InTreatment = 1,
+    Recovery = 2,
+    Recovered = 3
 }

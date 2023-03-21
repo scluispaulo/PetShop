@@ -1,9 +1,8 @@
-namespace Domain.Enums
+namespace Domain.Enums;
+
+public enum AccommodationStateEnum
 {
-    public enum AccommodationStateEnum
-    {
-        Free = 1,
-        Busy = 2,
-        WaitingOwner = 3
-    }
+    Free = 1,
+    Busy = 2,
+    WaitingOwner = 3
 }

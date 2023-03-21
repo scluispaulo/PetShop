@@ -1,12 +1,11 @@
 using Domain.Enums;
 
-namespace Domain.Entities
+namespace Domain.Entities;
+
+public class Accommodation
 {
-    public class Accommodation
-    {
-        public int Id { get; set; }
-        public int Number { get; set; }
-        public AccommodationStateEnum State { get; set; }
-        public Pet Pet { get; set; }
-    }
+    public int Id { get; set; }
+    public int Number { get; set; }
+    public AccommodationStateEnum State { get; set; }
+    public Pet Pet { get; set; }
 }

@@ -1,16 +1,15 @@
 using Application.DTOs;
 using FluentValidation;
 
-namespace Application.Validation
+namespace Application.Validation;
+
+public class PetDTOValidator : AbstractValidator<PetDTO>
 {
-    public class PetDTOValidator : AbstractValidator<PetDTO>
+    public PetDTOValidator()
     {
-        public PetDTOValidator()
-        {
-            RuleFor(p => p.Name).NotEmpty().Length(3, 50);
-            RuleFor(p => p.ReasonForTreatment).NotEmpty();
-            RuleFor(p => p.HealthState).NotEmpty();
-            RuleFor(p => p.AccommodationNumber).NotEmpty();
-        }
+        RuleFor(p => p.Name).NotEmpty().Length(3, 50);
+        RuleFor(p => p.ReasonForTreatment).NotEmpty();
+        RuleFor(p => p.HealthState).NotEmpty();
+        RuleFor(p => p.AccommodationNumber).NotEmpty();
     }
 }
