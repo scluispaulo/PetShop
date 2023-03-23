@@ -10,9 +10,9 @@ COPY src/Tests/UnitTests/*.csproj src/Tests/UnitTests/
 RUN dotnet build -c release
 
 FROM build AS publish
-RUN dotnet publish -c release --no-build -o /app
+RUN dotnet publish -c release --no-build -o /api
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0-alpine
-WORKDIR /app
-COPY --from=publish /app .
+WORKDIR /api
+COPY --from=publish /api .
 ENTRYPOINT ["dotnet", "Application.dll"]

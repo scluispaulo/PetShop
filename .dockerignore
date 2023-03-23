@@ -2,10 +2,8 @@
 **/bin/
 **/obj/
 **/out/
-
 **/node_modules/
 **/dist/
-
-# files
-Dockerfile*
-**/*.md
+.docker/
+.github/
+.vscode/
