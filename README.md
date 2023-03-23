@@ -1,27 +1,12 @@
 # PetShop
 
-[![.NET CI](https://github.com/scluispaulo/PetShop/actions/workflows/dotnet.yml/badge.svg)](https://github.com/scluispaulo/PetShop/actions/workflows/dotnet.yml)
-
-<img src="https://user-images.githubusercontent.com/63242321/198752130-16ebdc63-14f7-466b-ab0d-353e8dd97387.png" width="600">
-
-<img src="https://user-images.githubusercontent.com/63242321/198752181-e8bc96e2-2857-4f5e-a0fc-06bdd93c8128.png" width="600">
-
-<img src="https://user-images.githubusercontent.com/63242321/198752198-2f431e4b-e00e-4f47-ac16-ed71949a6ab9.png" width="600">
-
-
 ## Installation/ Configuration:
 
-1. Do you need Docker to run the application, run the following command in terminal:
+1. To run the application you need [Docker](https://docker.com)
 
-   ```
-   docker-compose up -d
-   ```
+2. Run `docker compose up -d --build`
 
-2. You can access the app at the following URL
-
-   ```
-   http://localhost:8080/
-   ```
+3. Wait until everything has finished loading in the console and then visit `http://localhost:8080/`
 
 
 ## About the application:
@@ -34,8 +19,5 @@ This application demonstrates how to build a CRUD operations with a **.Net 6** a
 - Angular 
 - MySql
 - Entity Framework Core
-- Fluent Validation
-- Swagger
-- AutoMapper
 - xUnit
-- Fluent Assertions
+- Docker
